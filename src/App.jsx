@@ -1,5 +1,4 @@
 // import * as React from 'react';
-
 // const title = 'React';
 
 const numbers = [1, 2, 3, 4];
@@ -25,15 +24,33 @@ const list = [
     num_comments: 2,
     points: 5,
     objectID: 1,
+  },
+  {
+    title: 'shadcnui',
+    url: 'xd',
+    author: 'shad',
+    num_comments: 2,
+    points: 5,
+    objectID: 3,
   }]
 function App() {
   return (
     <div>
-      <h1>Hello World</h1>
-
-      <label htmlFor="search">Search: </label>
-      <input id="search" type="text" />
-      <ul>list.map(function(list));</ul>
+      ...
+      <ul>
+        {list.map(function (item) {
+          return (
+            <li key={item.objectID}>
+              <span>
+                <a href={item.url}>{item.title}</a>
+              </span>
+              <span>{item.author}</span>
+              <span>{item.num_comments}</span>
+              <span>{item.points}</span>
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 }
