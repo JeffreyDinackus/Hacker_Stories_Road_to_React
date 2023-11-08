@@ -1,4 +1,4 @@
-// import * as React from 'react';
+import * as React from 'react';
 // const title = 'React';
 
 const numbers = [1, 2, 3, 4];
@@ -9,6 +9,32 @@ console.log(exponentialNumbers);
 // [1, 4, 9, 16]
 
 const AddOne = (x) => x + 1;
+
+
+
+
+
+function Counter() {
+
+  const [count, setCount] = React.useState(0);
+
+  function handleCount(delta) {
+    setCount(count + delta);
+  }
+
+  return (
+    <div>
+      Count: {count}
+
+      <button type="button" onClick={() => handleCount(1)}>
+        Increase Count
+      </button>
+      <button type="button" onClick={() => handleCount(-1)}>
+        Decrease Count
+      </button>
+    </div>
+  );
+}
 
 
 const list = [
@@ -64,19 +90,43 @@ const App = () => {
       <Search />
       <List />
       <List />
+      <Counter />
     </ >)
 }
 
 
 
-const Search = () => (
-  <div>
-    <label htmlFor="search">Search: </label>
-    Fundamentals of React
-    40
-    <input id="search" type="text" />
-  </div>
-);
+const Search = () => {
+
+  const [text, setText] = React.useState('');
+
+  function handleChange(event) {
+    setText(event.target.value);
+  }
+
+
+  return (
+    <div>
+
+
+
+
+
+      <label htmlFor="search">Search: </label>
+      Fundamentals of React
+      40
+      <input id="search" onChange={handleChange} type="text" />
+      <p>{text}</p>
+
+
+
+
+
+
+
+    </div>
+  )
+};
 
 
 console.log(App())
