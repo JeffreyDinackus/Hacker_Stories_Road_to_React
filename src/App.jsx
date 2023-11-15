@@ -16,7 +16,7 @@ const AddOne = (x) => x + 1;
 
 
 function Counter() {
-
+  console.log("Counter renders")
   const [count, setCount] = React.useState(0);
 
   function handleCount(delta) {
@@ -40,30 +40,39 @@ function Counter() {
 
 
 
-const List = (props) => (
-  <ul>
-    {props.list.map((item) => (
-      <Item key={item.objectID} item={item} />
-    ))}
-  </ul>
-);
+const List = (props) => {
+  console.log("List renders")
+
+  return (
+    <ul>
+      {props.list.map((item) => (
+        <Item key={item.objectID} item={item} />
+      ))}
+    </ul>
+  )
+};
 
 const Welcome = ({ text }) => {
+  console.log("Welcome renders")
   return <h1 style={{ color: 'red' }}>{text.greeting}</h1>;
 };
 
 
-const Item = (props) => (
-  <li>
-    <span>
-      <a href={props.item.url}>{props.item.title}</a>
-    </span>
-    <span>{props.item.author}</span>
-    <span>{props.item.num_comments}</span>
-    <span>{props.item.points}</span>
-  </li>
-);
+const Item = (props) => {
+  console.log("Item renders")
+  return (
+    <li>
+      <span>
+        <a href={props.item.url}>{props.item.title}</a>
+      </span>
+      <span>{props.item.author}</span>
+      <span>{props.item.num_comments}</span>
+      <span>{props.item.points}</span>
+    </li>
+  )
+};
 const App = () => {
+  console.log("App renders")
   const stories = [
     {
       title: 'React',
@@ -88,14 +97,21 @@ const App = () => {
       num_comments: 2,
       points: 5,
       objectID: 3,
-    }]
+    }];
+
+  const handleSearch = (event) => {
+    // D
+    console.log(event.target.value + "APP");
+  };
+
+
   const greetingObject = { greeting: 'Welcome to React' };
 
   return (
     < >
       <h1>Hacker Stories</h1>
       <AddOne />
-      <Search />
+      <Search onSearch={handleSearch} />
       <Welcome text={greetingObject} />
       <List list={stories} />
       <Counter />
@@ -104,13 +120,15 @@ const App = () => {
 
 
 
-const Search = () => {
-
-  const [text, setText] = React.useState('');
+const Search = (props) => {
+  console.log("Search Rendered")
+  const [text, setText] = React.useState('xd');
 
   function handleChange(event) {
     setText(event.target.value);
-  }
+
+    props.onSearch(event);
+  };
 
 
   return (
